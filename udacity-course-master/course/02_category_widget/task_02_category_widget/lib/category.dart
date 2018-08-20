@@ -5,6 +5,12 @@
 // To keep your imports tidy, follow the ordering guidelines at
 // https://www.dartlang.org/guides/language/effective-dart/style#ordering
 import 'package:flutter/material.dart';
+import 'package:meta/meta.dart';
+// @required is defined in the meta.dart package
+
+const _widgetHeight = 100.0;
+BorderRadius _borderRadius = BorderRadius.circular(_widgetHeight / 2);
+const _iconSize = 60.0;
 
 /// A custom [Category] widget.
 ///
@@ -15,8 +21,19 @@ class Category extends StatelessWidget {
   ///
   /// A [Category] saves the name of the Category (e.g. 'Length'), its color for
   /// the UI, and the icon that represents it (e.g. a ruler).
-  // TODO: You'll need the name, color, and iconLocation from main.dart
-  const Category();
+
+  final String name;
+  final ColorSwatch color;
+//  final MaterialColor color;
+  final IconData iconLocation;
+
+  // DONE: You'll need the name, color, and iconLocation from main.dart
+  const Category(
+      {Key key,
+      @required this.name,
+      @required this.iconLocation,
+      @required this.color})
+      : super(key: key);
 
   /// Builds a custom widget that shows [Category] information.
   ///
@@ -28,6 +45,36 @@ class Category extends StatelessWidget {
   // See https://docs.flutter.io/flutter/material/Theme-class.html
   Widget build(BuildContext context) {
     // TODO: Build the custom widget here, referring to the Specs.
-    return Container();
+    return Material(
+      color: Colors.transparent,
+      child: Container(
+        height: _widgetHeight,
+        child: InkWell(
+          borderRadius: _borderRadius,
+          highlightColor: color,
+          splashColor: color,
+          onTap: () => print("I was tapped!!"),
+          child: Padding(
+            padding: EdgeInsets.all(8.0),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Padding(
+                  padding: EdgeInsets.all(16.0),
+                  child: Icon(iconLocation, size: _iconSize),
+                ),
+                Center(
+                  child: Text(
+                    name,
+                    textAlign: TextAlign.center,
+                    style: Theme.of(context).textTheme.headline,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }
