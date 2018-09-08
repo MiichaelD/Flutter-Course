@@ -99,7 +99,7 @@ class _CategoryRouteState extends State<CategoryRoute> {
     );
 
     final appBar = AppBar(
-      elevation: 0.0,
+      elevation: 1.0,
       title: Text(
         'Unit Converter',
         style: TextStyle(
