@@ -5,11 +5,11 @@
 // To keep your imports tidy, follow the ordering guidelines at
 // https://www.dartlang.org/guides/language/effective-dart/style#ordering
 import 'package:flutter/material.dart';
-// @required is defined in the meta.dart package
 import 'package:meta/meta.dart';
 
 import 'converter_route.dart';
 import 'unit.dart';
+// @required is defined in the meta.dart package
 
 // We use an underscore to indicate that these variables are private.
 // See https://www.dartlang.org/guides/language/effective-dart/design#libraries
@@ -87,9 +87,9 @@ class Category extends StatelessWidget {
         height: _rowHeight,
         child: InkWell(
           borderRadius: _borderRadius,
-          // TODO: Use the highlight and splash colors from the ColorSwatch
-          highlightColor: color,
-          splashColor: color,
+          // DONE: Use the highlight and splash colors from the ColorSwatch
+          highlightColor: color['highlight'],
+          splashColor: color['splash'],
           // We can use either the () => function() or the () { function(); }
           // syntax.
           onTap: () => _navigateToConverter(context),
