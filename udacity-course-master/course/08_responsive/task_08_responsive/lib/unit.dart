@@ -21,7 +21,5 @@ class Unit {
   /// Creates a [Unit] from a JSON object.
   Unit.fromJson(Map jsonMap)
       : name = jsonMap['name'],
-        conversion = jsonMap['conversion'].toDouble(),
-        assert(name != null),
-        assert(conversion != null);
+        conversion = jsonMap['conversion'].toDouble();
 }

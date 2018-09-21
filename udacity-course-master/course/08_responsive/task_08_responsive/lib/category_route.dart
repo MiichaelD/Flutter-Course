@@ -98,21 +98,34 @@ class _CategoryRouteState extends State<CategoryRoute> {
     });
   }
 
-  // TODO: Use a GridView for landscape mode, passing in the device orientation
+  // DONE: Use a GridView for landscape mode, passing in the device orientation
   /// Makes the correct number of rows for the list view, based on whether the
   /// device is portrait or landscape.
   ///
   /// For portrait, we use a [ListView]. For landscape, we use a [GridView].
-  Widget _buildCategoryWidgets() {
-    return ListView.builder(
-      itemBuilder: (BuildContext context, int index) {
-        return CategoryTile(
-          category: _categories[index],
-          onTap: _onCategoryTap,
-        );
-      },
-      itemCount: _categories.length,
-    );
+  Widget _buildCategoryWidgets(Orientation deviceOrientation) {
+    if (deviceOrientation == Orientation.portrait) {
+      return ListView.builder(
+        itemBuilder: (BuildContext context, int index) {
+          return CategoryTile(
+            category: _categories[index],
+            onTap: _onCategoryTap,
+          );
+        },
+        itemCount: _categories.length,
+      );
+    } else {
+      return GridView.count(
+        crossAxisCount: 2,
+        childAspectRatio: 3.0,
+        children: _categories.map((Category c) {
+          return CategoryTile(
+            category: c,
+            onTap: _onCategoryTap,
+          );
+        }).toList(),
+      );
+    }
   }
 
   /// Returns a list of mock [Unit]s.
@@ -134,7 +147,7 @@ class _CategoryRouteState extends State<CategoryRoute> {
         right: 8.0,
         bottom: 48.0,
       ),
-      child: _buildCategoryWidgets(),
+      child: _buildCategoryWidgets(MediaQuery.of(context).orientation),
     );
 
     return Backdrop(
