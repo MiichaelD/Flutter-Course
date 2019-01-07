@@ -52,7 +52,9 @@ class _MyHomePageState extends State<MyHomePage> {
       // so that the display can reflect the updated values. If we changed
       // _counter without calling setState(), then the build method would not be
       // called again, and so nothing would appear to happen.
-      _counter++;
+      if (++_counter == 16) {
+        _counter = 1;
+      }
     });
   }
 
@@ -95,9 +97,12 @@ class _MyHomePageState extends State<MyHomePage> {
                 new Text(
                   'You have clicked the button this many times:',
                 ),
-                new Text(
-                  '$_counter',
-                  style: Theme.of(context).textTheme.display1,
+                new Padding(
+                  padding: EdgeInsets.only(left: 8),
+                  child: new Text(
+                    '$_counter',
+                    style: Theme.of(context).textTheme.display1,
+                  ),
                 ),
               ]
             ),
