@@ -27,9 +27,9 @@ class _MyAppState extends State<MyApp> {
       if (++_counter % 16 == 0) {
         _counter = 1;
         _themeData = ThemeData(
-            primarySwatch: _themeData.primaryColor == Colors.green
+            primarySwatch: _themeData.primaryColor == Colors.red
                 ? Colors.blue
-                : Colors.green);
+                : Colors.red);
       }
     });
   }
@@ -63,9 +63,13 @@ class MyHomePage extends StatelessWidget {
       slivers: <Widget>[
         SliverAppBar(
           pinned: true,
-          expandedHeight: 250.0,
+          expandedHeight: 225.0,
           flexibleSpace: FlexibleSpaceBar(
             title: Text(title),
+            background: const Image(
+              image: const AssetImage("assets/background.jpg"),
+              fit: BoxFit.fill
+            ),
           ),
         ),
         SliverGrid(
