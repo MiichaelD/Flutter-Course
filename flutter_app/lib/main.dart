@@ -17,15 +17,14 @@ class _MyAppState extends State<MyApp> {
     );
   }
 
-  void _incrementCounter() {
+  void onFabTap() {
     setState(() {
       // This call to setState tells the Flutter framework that something has
       // changed in this State, which causes it to rerun the build method below
       // so that the display can reflect the updated values. If we changed
       // _counter without calling setState(), then the build method would not be
       // called again, and so nothing would appear to happen.
-      if (++_counter % 16 == 0) {
-        _counter = 1;
+      if (++_counter % 8 == 0) {
         _themeData = ThemeData(
             primarySwatch: _themeData.primaryColor == Colors.red
                 ? Colors.blue
@@ -37,15 +36,15 @@ class _MyAppState extends State<MyApp> {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    MyHomePage page = MyHomePage(
+    MyHomePage homePage = MyHomePage(
         title: "You clicked the FAB $_counter times",
         counter: _counter,
-        onFabPressed: _incrementCounter);
+        onFabPressed: onFabTap);
 
     return new MaterialApp(
       title: 'Test',
       theme: _themeData,
-      home: page,
+      home: homePage,
     );
   }
 }
@@ -74,7 +73,7 @@ class MyHomePage extends StatelessWidget {
         ),
         SliverGrid(
           gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-            maxCrossAxisExtent: 200.0,
+            maxCrossAxisExtent: 160.0,
             mainAxisSpacing: 10.0,
             crossAxisSpacing: 10.0,
             childAspectRatio: 4.0,
@@ -84,7 +83,7 @@ class MyHomePage extends StatelessWidget {
               return Container(
                 alignment: Alignment.center,
                 color: Theme.of(context).accentColor.withAlpha(25 * (index % 11)),
-                child: Text('grid item $index',
+                child: Text('Grid item $index',
                     style: Theme.of(context).textTheme.body2),
               );
             },
@@ -98,7 +97,7 @@ class MyHomePage extends StatelessWidget {
               return Container(
                 alignment: Alignment.center,
                 color: Theme.of(context).primaryColor.withAlpha(25 * (index % 11)),
-                child: Text('list item $index',
+                child: Text('List item $index',
                     style: Theme.of(context).textTheme.body1),
               );
             },
@@ -119,7 +118,7 @@ class MyHomePage extends StatelessWidget {
         onPressed: onFabPressed,
         tooltip: 'Increment',
         child: new Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      ), 
     );
   }
 }
